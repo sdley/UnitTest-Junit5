@@ -3,6 +3,11 @@ package sn.sdley;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,6 +105,38 @@ public class CalculatriceTest {
         assertEquals("Division par zéro", e.getMessage());
     }
 
+    /*
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1, 2",
+            "2, 2, 4",
+            "5, 5, 10",
+            "10, 15, 25",
+            "0, 0, 0",
+            "100, 200, 300"
+    })
+    public void testAdditionParametree(int a, int b, int expected) {
+        assertEquals(expected, calculatrice.addition(a, b),
+                "L'addition de " + a + " et " + b + " devrait être " + expected);
+    }
+
+     */
+//    static Stream<Object[]> additionData() {
+//        return Stream.of(
+//                new Object[]{1, 1, 2},
+//                new Object[]{2, 2, 4},
+//                new Object[]{5, 5, 10},
+//                new Object[]{10, 15, 25},
+//                new Object[]{0, 0, 0},
+//                new Object[]{100, 200, 300}
+//        );
+//    }
+//
+//    @ParameterizedTest
+//    @MethodSource("additionData")
+//    public void testAdditionParametree(int a, int b, int expected) {
+//        assertEquals(expected, calculatrice.addition(a, b));
+//    }
 
 
 }
