@@ -17,6 +17,7 @@ public class CalculatriceTest {
     @AfterEach
     public void destroy(){
         calculatrice = null;
+        System.out.println("Nettoyage effectué après le test.");
     }
 
     @Test
