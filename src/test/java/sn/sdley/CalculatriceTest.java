@@ -69,14 +69,36 @@ public class CalculatriceTest {
     public void testAdditionSansDepassement() {
         int limite = Integer.MAX_VALUE;
 
-        try {
-            int result = calculatrice.addition(5, 5);
-            assertTrue(result < limite,
-                    "Le résultat doit être inférieur à Integer.MAX_VALUE");
-        } catch (ArithmeticException e) {
-            fail("L'addition ne doit pas dépasser Integer.MAX_VALUE");
-        }
+        int result = calculatrice.addition(1234567890, 112323377);
+        assertTrue(result < limite,
+                "Le résultat doit être inférieur à Integer.MAX_VALUE");
 
     }
+
+    // exo 5
+    @Test
+    public void testSoustraction(){
+        assert calculatrice.soustraction(5, 3) == 2;
+    }
+
+    @Test
+    public void testMultiplication(){
+        assert calculatrice.multiplication(5, 3) == 15;
+    }
+
+    @Test
+    public void testDivision(){
+        assert calculatrice.division(6, 3) == 2;
+    }
+
+    @Test
+    public void divisionParZero(){
+        ArithmeticException e = assertThrows(ArithmeticException.class, () -> {
+            calculatrice.division(6, 0);
+        });
+        assertEquals("Division par zéro", e.getMessage());
+    }
+
+
 
 }
