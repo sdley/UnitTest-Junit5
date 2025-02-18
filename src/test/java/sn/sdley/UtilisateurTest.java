@@ -2,6 +2,9 @@ package sn.sdley;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilisateurTest {
@@ -46,6 +49,23 @@ public class UtilisateurTest {
                         "Une chaîne vide ne doit pas être valide"),
                 () -> assertFalse(Utilisateur.estEmailValide("   "),
                         "Un email avec seulement des espaces ne doit pas être valide")
+        );
+    }
+
+    // exo 12
+    @Test
+    @DisplayName("Test de la liste des utilisateurs avec noms sénégalais")
+    public void testObtenirNomsUtilisateurs() {
+        // Récupération de la liste des noms d'utilisateurs
+        List<String> nomsUtilisateurs = Utilisateur.obtenirNomsUtilisateurs();
+
+        // Vérifications avec assertAll()
+        assertAll(
+                () -> assertNotNull(nomsUtilisateurs, "La liste ne doit pas être null"),
+                () -> assertFalse(nomsUtilisateurs.isEmpty(), "La liste ne doit pas être vide"),
+                () -> assertTrue(nomsUtilisateurs.contains("Diop"), "La liste doit contenir 'Diop'"),
+                () -> assertTrue(nomsUtilisateurs.contains("Ndiaye"), "La liste doit contenir 'Ndiaye'"),
+                () -> assertTrue(nomsUtilisateurs.contains("Ba"), "La liste doit contenir 'Ba'")
         );
     }
 }
