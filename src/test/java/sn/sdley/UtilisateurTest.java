@@ -87,4 +87,15 @@ public class UtilisateurTest {
                         "La concaténation de deux chaînes vides doit donner une chaîne vide")
         );
     }
+
+    // 14. Utilisateur actif
+    @Test
+    @DisplayName("Test qu'un utilisateur nouvellement créé est actif")
+    public void testUtilisateurEstActif() {
+        // Création d'un utilisateur
+        Utilisateur utilisateur = new Utilisateur("Diop", "Mamadou");
+
+        // Vérification que l'utilisateur est bien actif
+        assertTrue(utilisateur.estActif(), "L'utilisateur doit être actif par défaut");
+    }
 }

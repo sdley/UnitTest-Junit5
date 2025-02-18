@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 public class Utilisateur {
     private String nom;
     private String prenom;
+    private boolean actif;
 
     // Constructeur
     public Utilisateur(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+        this.actif = true; // Par défaut, l'utilisateur est actif
     }
 
     // Getter pour récupérer le nom
@@ -23,6 +25,16 @@ public class Utilisateur {
     // Getter pour récupérer le prénom
     public String getPrenom() {
         return prenom;
+    }
+
+    // Getter pour récupérer l'état de l'utilisateur
+    public boolean estActif() {
+        return actif;
+    }
+
+    // Setter pour définir l'état de l'utilisateur
+    public void setActif(boolean actif) {
+        this.actif = actif;
     }
 
     // Expression régulière pour valider les emails
