@@ -1,7 +1,9 @@
 package sn.sdley;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -10,11 +12,21 @@ public class Utilisateur {
     private String prenom;
     private boolean actif;
 
+    // Simulons une base d'utilisateurs avec une HashMap
+    private static final Map<String, Utilisateur> baseUtilisateurs = new HashMap<>();
+
     // Constructeur
     public Utilisateur(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
         this.actif = true; // Par défaut, l'utilisateur est actif
+    }
+    // Constructeur
+    public Utilisateur(String id, String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.actif = true; // Par défaut, l'utilisateur est actif
+        baseUtilisateurs.put(id, this); // Ajout dans la base simulée
     }
 
     // Getter pour récupérer le nom
@@ -73,6 +85,15 @@ public class Utilisateur {
     // 13. Méthode de concaténation de deux chaînes
     public static String concatener(String a, String b) {
         return a + b;
+    }
+
+    // 16.Vérification d’une exception sur une méthode de suppression
+    // Méthode pour supprimer un utilisateur
+    public static void supprimerUtilisateur(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'ID ne peut pas être null ou vide");
+        }
+        baseUtilisateurs.remove(id); // Suppression de la base
     }
 
     // Méthode principale de Test

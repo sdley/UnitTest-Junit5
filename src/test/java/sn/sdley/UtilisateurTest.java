@@ -98,4 +98,41 @@ public class UtilisateurTest {
         // Vérification que l'utilisateur est bien actif
         assertTrue(utilisateur.estActif(), "L'utilisateur doit être actif par défaut");
     }
+
+    // 16.Vérification d’une exception sur une méthode de suppression
+    @Test
+    @DisplayName("Test suppression avec ID null")
+    public void testSuppressionIdNull() {
+        assertThrows(IllegalArgumentException.class, () ->
+                        Utilisateur.supprimerUtilisateur(null),
+                "Une IllegalArgumentException devrait être levée si l'ID est null"
+        );
+    }
+
+    @Test
+    @DisplayName("Test suppression avec ID vide")
+    public void testSuppressionIdVide() {
+        assertAll(
+                () -> assertThrows(IllegalArgumentException.class, () ->
+                                Utilisateur.supprimerUtilisateur(""),
+                        "Une IllegalArgumentException devrait être levée si l'ID est vide"
+                ),
+                () -> assertThrows(IllegalArgumentException.class, () ->
+                                Utilisateur.supprimerUtilisateur("   "),
+                        "Une IllegalArgumentException devrait être levée si l'ID ne contient que des espaces"
+                )
+        );
+    }
+
+    @Test
+    @DisplayName("Test suppression avec un ID valide")
+    public void testSuppressionIdValide() {
+        // Création d'un utilisateur
+        Utilisateur utilisateur = new Utilisateur("123", "Seydou");
+
+        // Vérifie que l'utilisateur est bien présent avant suppression
+        assertDoesNotThrow(() -> Utilisateur.supprimerUtilisateur("123"),
+                "La suppression d'un ID valide ne doit pas lever d'exception"
+        );
+    }
 }
