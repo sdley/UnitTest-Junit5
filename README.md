@@ -158,4 +158,7 @@ Voici le tableau converti en format Markdown :
 
 Un HashMap est une structure de données très efficace pour associer des clés et des valeurs, et permet d'accéder rapidement aux données. 🚀
 
+### Notion de Singleton 
+Un Singleton est un design pattern qui garantit qu'une seule instance d'une classe est créée et fournit un point d'accès global à cette instance.
+
 
