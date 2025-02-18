@@ -68,4 +68,23 @@ public class UtilisateurTest {
                 () -> assertTrue(nomsUtilisateurs.contains("Ba"), "La liste doit contenir 'Ba'")
         );
     }
+
+    // 13.
+    @Test
+    @DisplayName("Test de la méthode concatener()")
+    public void testConcatener() {
+        assertAll(
+                () -> assertEquals("Hello World", Utilisateur.concatener("Hello", " World"),
+                        "La concaténation de 'Hello' et ' World' doit donner 'Hello World'"),
+
+                () -> assertEquals("Bonjour", Utilisateur.concatener("", "Bonjour"),
+                        "La concaténation d'une chaîne vide et 'Bonjour' doit donner 'Bonjour'"),
+
+                () -> assertEquals("Bienvenue !", Utilisateur.concatener("Bienvenue !", ""),
+                        "La concaténation de 'Bienvenue !' et une chaîne vide doit donner 'Bienvenue !'"),
+
+                () -> assertEquals("", Utilisateur.concatener("", ""),
+                        "La concaténation de deux chaînes vides doit donner une chaîne vide")
+        );
+    }
 }

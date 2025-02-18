@@ -57,10 +57,22 @@ public class Utilisateur {
                 .collect(Collectors.toList());
     }
 
-    // Méthode principale pour afficher les noms d'utilisateurs
+
+    // 13. Méthode de concaténation de deux chaînes
+    public static String concatener(String a, String b) {
+        return a + b;
+    }
+
+    // Méthode principale de Test
     public static void main(String[] args) {
+        // 12
         List<String> noms = obtenirNomsUtilisateurs();
         System.out.println("Liste des noms d'utilisateurs : " + noms);
+
+        // 13
+        System.out.println(concatener("Bonjour, ", "Mamadou !"));
+        System.out.println(concatener("Aissatou", ""));
+        System.out.println(concatener("", "Bienvenue !"));
     }
 
 }
