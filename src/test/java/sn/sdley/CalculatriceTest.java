@@ -114,8 +114,9 @@ public class CalculatriceTest {
         });
         assertEquals("Division par zéro", e.getMessage());
     }
-
-    /*
+    /**
+     * Test paramétré de l'addition avec plusieurs valeurs
+     *
     @ParameterizedTest
     @CsvSource({
             "1, 1, 2",
@@ -131,23 +132,35 @@ public class CalculatriceTest {
                 "L'addition de " + a + " et " + b + " devrait être " + expected);
     }
 
-     */
-//    static Stream<Object[]> additionData() {
-//        return Stream.of(
-//                new Object[]{1, 1, 2},
-//                new Object[]{2, 2, 4},
-//                new Object[]{5, 5, 10},
-//                new Object[]{10, 15, 25},
-//                new Object[]{0, 0, 0},
-//                new Object[]{100, 200, 300}
-//        );
-//    }
-//
-//    @ParameterizedTest
-//    @MethodSource("additionData")
-//    public void testAdditionParametree(int a, int b, int expected) {
-//        assertEquals(expected, calculatrice.addition(a, b));
-//    }
 
+    static Stream<Object[]> additionData() {
+        return Stream.of(
+                new Object[]{1, 1, 2},
+                new Object[]{2, 2, 4},
+                new Object[]{5, 5, 10},
+                new Object[]{10, 15, 25},
+                new Object[]{0, 0, 0},
+                new Object[]{100, 200, 300}
+        );
+    }
 
+    @ParameterizedTest
+    @MethodSource("additionData")
+    public void testAdditionParametree2(int a, int b, int expected) {
+        assertEquals(expected, calculatrice.addition(a, b));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1, 2",
+            "2, 2, 4",
+            "3, 3, 6",
+            "10, 5, 15"
+    })
+    @DisplayName("Test paramétré")
+    public void AdditionTest(int a, int b, int expected) {
+        assertEquals(expected, calculatrice.addition(a, b));
+    }
+
+    */
 }
