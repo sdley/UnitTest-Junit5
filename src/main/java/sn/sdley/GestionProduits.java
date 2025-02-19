@@ -1,18 +1,31 @@
 package sn.sdley;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GestionProduits {
-    private static final List<String> produits = Arrays.asList(
-            "Riz", "Sucre", "Huile", "Lait", "Pain", "Café", "Beurre", "Jus", "Farine"
-    );
+    /**
+     * Nous utilisons un HashMap<String, Produit> où la clé est l'ID du produit
+     * et la valeur est l'objet Produit. Cela permet une recherche rapide.
+     */
+    private Map<String, Produit> produits;
 
-    // Méthode qui recherche un produit dans la liste
-    public static boolean rechercherProduit(String nomProduit) {
+    public GestionProduits() {
+        this.produits = new HashMap<>();
+    }
+
+    // Ajouter un produit à la collection
+    public void ajouterProduit(String id, String nom) {
+        produits.put(id, new Produit(id, nom));
+    }
+
+    // Vérifier si un produit existe par son nom
+    public boolean rechercherProduit(String nomProduit) {
         if (nomProduit == null || nomProduit.trim().isEmpty()) {
-            return false; // Retourne false si la chaîne est vide ou null
+            return false; // Empêche les recherches invalides
         }
-        return produits.contains(nomProduit);
+
+        return produits.values().stream()
+                .anyMatch(produit -> produit.getNom().equalsIgnoreCase(nomProduit));
     }
 }

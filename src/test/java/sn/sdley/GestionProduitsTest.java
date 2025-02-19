@@ -1,38 +1,50 @@
 package sn.sdley;
 
-import sn.sdley.GestionProduits;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GestionProduitsTest {
+    private GestionProduits gestionProduits;
+
+    @BeforeEach
+    public void setUp() {
+        gestionProduits = new GestionProduits();
+        gestionProduits.ajouterProduit("1", "Riz");
+        gestionProduits.ajouterProduit("2", "Mil");
+        gestionProduits.ajouterProduit("3", "Sucre");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        gestionProduits = null;
+    }
 
     @Test
-    @DisplayName("Test recherche d'un produit présent")
+    @DisplayName("Recherche de produit present")
     public void testProduitPresent() {
-        assertTrue(GestionProduits.rechercherProduit("Riz"),
-                "Le produit 'Riz' devrait être trouvé dans la liste.");
+        assertTrue(gestionProduits.rechercherProduit("Riz"),
+                "Le produit 'Riz' doit être trouvé");
     }
 
     @Test
-    @DisplayName("Test recherche d'un produit absent")
+    @DisplayName("Recherche de produit absent")
     public void testProduitAbsent() {
-        assertFalse(GestionProduits.rechercherProduit("Pâtes"),
-                "Le produit 'Pâtes' ne devrait pas être trouvé dans la liste.");
+        assertFalse(gestionProduits.rechercherProduit("Café"),
+                "Le produit 'Café' ne doit pas être trouvé");
     }
 
     @Test
-    @DisplayName("Test recherche avec une chaîne vide ou null")
-    public void testRechercheVideOuNull() {
-        assertAll(
-                () -> assertFalse(GestionProduits.rechercherProduit(""),
-                        "Une chaîne vide ne devrait pas être considérée comme un produit valide."),
-
-                () -> assertFalse(GestionProduits.rechercherProduit("   "),
-                        "Une chaîne contenant uniquement des espaces ne devrait pas être trouvée."),
-
-                () -> assertFalse(GestionProduits.rechercherProduit(null),
-                        "La recherche d'un produit null ne devrait pas être trouvée.")
-        );
+    @DisplayName("Recherche de produit avec chaines vides")
+    public void testRechercheAvecChaineVide() {
+        assertFalse(gestionProduits.rechercherProduit(""),
+                "Une chaîne vide ne doit pas retourner de produit valide");
+        assertFalse(gestionProduits.rechercherProduit("   "),
+                "Une chaîne contenant seulement des espaces ne doit pas être valide");
+        assertFalse(gestionProduits.rechercherProduit(null),
+                "Une valeur null ne doit pas être valide");
     }
 }
