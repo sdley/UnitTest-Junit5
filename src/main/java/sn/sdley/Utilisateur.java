@@ -49,6 +49,18 @@ public class Utilisateur {
         this.actif = actif;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
     // Expression régulière pour valider les emails
     /**
      * accepte les emails de type user@.domain.com
