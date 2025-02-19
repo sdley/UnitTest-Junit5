@@ -18,7 +18,9 @@ public class UtilisateurTest {
                 () -> assertTrue(Utilisateur.estEmailValide("user.name+test@domain.org"),
                         "user.name+test@domain.org doit être valide"),
                 () -> assertTrue(Utilisateur.estEmailValide("contact123@sub.example.net"),
-                        "contact123@sub.example.net doit être valide")
+                        "contact123@sub.example.net doit être valide"),
+                () -> assertTrue(Utilisateur.estEmailValide("user@domain.uam.sn"),
+                        "user@domain.uam.sn doit être valide")
         );
     }
 
@@ -35,7 +37,11 @@ public class UtilisateurTest {
                 () -> assertFalse(Utilisateur.estEmailValide("user@.com"),
                         "user@.com ne doit pas être valide"),
                 () -> assertFalse(Utilisateur.estEmailValide("user@domain"),
-                        "user@domain ne doit pas être valide")
+                        "user@domain ne doit pas être valide"),
+                () -> assertFalse(Utilisateur.estEmailValide("user@domain..com"),
+                        "user@domain..com ne doit pas être valide"),
+                () -> assertFalse(Utilisateur.estEmailValide("user@.domain.com"),
+                        "user@.domain.com ne doit pas être valide")
         );
     }
 
